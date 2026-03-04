@@ -191,18 +191,17 @@ export default function App() {
      Implement filtering logic inside this useEffect.
      Dependency array MUST be: [searchTerm, users]
      ========================================================= */
-useEffect(() => {
-  if (searchTerm.length === 0) {
-    setFilteredUsers(users);
-    return;
-  }
-
-  const filtered = users.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  setFilteredUsers(filtered);
-}, [searchTerm, users]);
+      useEffect(() => {
+      if (!searchTerm) {
+         setFilteredUsers(users);
+      } else {
+         setFilteredUsers(
+            users.filter((user) =>
+            user.name.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+         );
+      }
+      }, [searchTerm, users]);
 
   // Modal handlers (already complete)
   function handleUserClick(user) {
